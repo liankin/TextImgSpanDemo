@@ -26,6 +26,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 富文本排版：
+ * 1.文字与图片中间线对齐排列
+ * 2.图片卡片，拖拽移除
+ */
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.image_and_text_view)
@@ -34,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
     TinderStackLayout tinderStackLayout;
     @BindView(R.id.image_view)
     ImageView imageView;
+    @BindView(R.id.tv_again_load_image)
+    TextView tvAgainLoadImage;
 
     //自定义对齐方式--与文字中间线对齐
     private final int ALIGN_FONTCENTER = 2;
     private LoadingDialog loadingDialog;
+    private  List<ImageMode> imageModeList = new ArrayList<ImageMode>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,12 +112,21 @@ public class MainActivity extends AppCompatActivity {
         imgUrlList.add("https://b-ssl.duitang.com/uploads/item/201509/15/20150915230645_ncaiV.thumb.700_0.jpeg");
         imgUrlList.add("https://b-ssl.duitang.com/uploads/item/201509/15/20150915231758_HZTdW.thumb.700_0.jpeg");
 
-        List<ImageMode> mList = new ArrayList<ImageMode>();
         for (int i = 0; i < imgUrlList.size(); i++) {
             ImageMode imageMode = new ImageMode((i + 1) + "_sakura", imgUrlList.get(i));
-            mList.add(imageMode);
+            imageModeList.add(imageMode);
         }
-        tinderStackLayout.setDatas(mList);
+        tinderStackLayout.setDatas(imageModeList);
     }
 
+    @OnClick({ R.id.tv_again_load_image})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_again_load_image:
+                if(imageModeList != null && imageModeList.size() > 0){
+                    tinderStackLayout.reLoadCard(imageModeList);
+                }
+                break;
+        }
+    }
 }

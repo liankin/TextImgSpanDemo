@@ -87,15 +87,18 @@ public class TinderCardView extends FrameLayout implements View.OnTouchListener 
                     float rotation = (CARD_ROTATION_DEGREES * (posX)) / screenWidth;
                     int halfCardHeight = (view.getHeight() / 2);
                     if(downY < halfCardHeight - (2*padding)){
-                        view.setRotation(rotation);
+                        view.setRotation(rotation);//当按下的位置小于卡片视图高度的一半时(按在卡片上部分)---顺时针旋转
                     } else {
-                        view.setRotation(-rotation);
+                        view.setRotation(-rotation);//按在卡片下部分---逆时针旋转
                     }
+
                     float alpha = (posX - padding) / (screenWidth * 0.3f);
                     if(alpha>0){
+                        //右滑卡片---喜欢图标，根据滑动距离，显现
                         iv_tips.setAlpha(alpha);
                         iv_tips.setImageResource(R.mipmap.ic_like);
                     }else{
+                        //左滑卡片---不喜欢图标，根据滑动距离，显现
                         iv_tips.setAlpha(-alpha);
                         iv_tips.setImageResource(R.mipmap.ic_nope);
 
