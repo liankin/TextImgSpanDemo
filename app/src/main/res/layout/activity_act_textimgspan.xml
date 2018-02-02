@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_custom_image_span"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="8dp"
+        android:layout_margin="15dp"
+        android:textSize="19sp"/>
+
+    <TextView
+        android:id="@+id/tv_frame_span"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:lineSpacingExtra="8dp"
+        android:textSize="19sp"/>
+
+    <TextView
+        android:id="@+id/tv_vertical_image_span"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:lineSpacingExtra="8dp"
+        android:textSize="19sp"/>
+
+    <TextView
+        android:id="@+id/tv_rainbow_span"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:lineSpacingExtra="8dp"
+        android:textSize="19sp"/>
+
+    <TextView
+        android:id="@+id/tv_animated_color_span"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:lineSpacingExtra="8dp"
+        android:textSize="19sp"/>
+
+    <TextView
+        android:id="@+id/tv_type_writer_span"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:lineSpacingExtra="8dp"
+        android:textSize="19sp"/>
+</LinearLayout>

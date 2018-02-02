@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.admin.textimgspandemo.act.MainActivity">
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/image_and_text_view"
+            android:id="@+id/btn_move_image_card"
+            android:layout_margin="15dp"
+            android:text="图片卡片，拖拽移除"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="8dp"
-            android:textSize="19sp"/>
-        <ImageView
-            android:id="@+id/image_view"
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
+            android:textSize="23sp"/>
         <TextView
-            android:id="@+id/tv_again_load_image"
+            android:id="@+id/btn_text_and_image_span"
+            android:text="文字图片富文本排列"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="重新加载图片"
-            android:textSize="19sp"/>
+            android:lineSpacingExtra="8dp"
+            android:layout_margin="15dp"
+            android:textSize="23sp"/>
     </LinearLayout>
-    <com.admin.textimgspandemo.views.TinderStackLayout
-        android:id="@+id/tinderStackLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</RelativeLayout>
+</ScrollView>

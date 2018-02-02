@@ -32,8 +32,8 @@ public class TinderCardView extends FrameLayout implements View.OnTouchListener 
     private float newY;
     private float dX;
     private float dY;
-    private float rightBoundary;
-    private float leftBoundary;
+    private float rightBoundary;//当卡片视图中心向右边移动到小于rightBoundary的范围内时，可移除
+    private float leftBoundary;//当卡片视图中心向左边移动到小于leftBoundary的范围内时，可移除
     private int screenWidth;
     private OnLoadMoreListener listener;
 
@@ -107,12 +107,14 @@ public class TinderCardView extends FrameLayout implements View.OnTouchListener 
                     return true;
                 case MotionEvent.ACTION_UP:
                     if(isBeyondLeftBoundary(view)){
+                        //卡片向屏幕左边移除，设置其x 为-(screenWidth * 2)
                         removeCard(view, -(screenWidth * 2));
                     }
                     else if(isBeyondRightBoundary(view)){
+                        //卡片向屏幕右边移除，设置其x 为(screenWidth * 2)
                         removeCard(view,(screenWidth * 2));
-
                     }else{
+                        //卡片恢复原位
                         resetCard(view);
                     }
 
@@ -126,14 +128,21 @@ public class TinderCardView extends FrameLayout implements View.OnTouchListener 
 
     }
 
+    //当卡片视图中心移动到屏幕左边界一定范围内时，可移除
     private boolean isBeyondLeftBoundary(View view){
         return (view.getX() + (view.getWidth() / 2) < leftBoundary);
     }
 
+    //当卡片视图中心移动到屏幕右边界一定范围内时，可移除
     private boolean isBeyondRightBoundary(View view){
         return (view.getX() + (view.getWidth() / 2) > rightBoundary);
     }
 
+    /**
+     * 移除卡片视图
+     * @param view
+     * @param xPos
+     */
     private void removeCard(final View view, int xPos){
         view.animate()
                 .x(xPos)
@@ -170,6 +179,10 @@ public class TinderCardView extends FrameLayout implements View.OnTouchListener 
     }
 
 
+    /**
+     * 卡片视图恢复原位
+     * @param view
+     */
     private void resetCard(final View view){
         view.animate()
                 .x(0)
@@ -180,6 +193,10 @@ public class TinderCardView extends FrameLayout implements View.OnTouchListener 
         iv_tips.setAlpha(0f);
     }
 
+    /**
+     * 单个卡片视图绑定数据
+     * @param u
+     */
     public void bindData(ImageMode u){
         if(u==null){
             return;
@@ -195,6 +212,9 @@ public class TinderCardView extends FrameLayout implements View.OnTouchListener 
         }
     }
 
+    /**
+     * 监听回调
+     */
     public interface OnLoadMoreListener{
         void onLoad();
     }
