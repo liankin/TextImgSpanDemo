@@ -81,7 +81,7 @@ public class ActTextImageSpan extends AppCompatActivity {
     }
 
     /**
-     * 给相应的字符序列添加边框的效果
+     * 给字符串添加边框的效果
      */
     public void initFrameSpan() {
         String str1 = "FrameSpan实现给相应的字符序列添加边框的效果：";
