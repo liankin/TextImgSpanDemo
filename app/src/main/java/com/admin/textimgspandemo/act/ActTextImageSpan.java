@@ -3,23 +3,32 @@ package com.admin.textimgspandemo.act;
 import android.animation.FloatEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.format.DateUtils;
 import android.util.Property;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.admin.textimgspandemo.R;
 import com.admin.textimgspandemo.views.AnimatedColorSpan;
 import com.admin.textimgspandemo.views.CustomImageSpan;
 import com.admin.textimgspandemo.views.FrameSpan;
+import com.admin.textimgspandemo.views.MarginDotSpan;
+import com.admin.textimgspandemo.views.MarginLineSpan;
 import com.admin.textimgspandemo.views.MutableForegroundColorSpan;
 import com.admin.textimgspandemo.views.RainbowSpan;
+import com.admin.textimgspandemo.views.TextLineBackgroundSpan;
+import com.admin.textimgspandemo.views.TextRoundSpan;
 import com.admin.textimgspandemo.views.TypeWriterSpanGroup;
 import com.admin.textimgspandemo.views.VerticalImageSpan;
 
@@ -46,6 +55,16 @@ public class ActTextImageSpan extends AppCompatActivity {
     TextView tvAnimatedColorSpan;
     @BindView(R.id.tv_type_writer_span)
     TextView tvTypeWriterSpan;
+    @BindView(R.id.tv_margin_dot_span)
+    TextView tvMarginDotSpan;
+    @BindView(R.id.tv_margin_line_span)
+    TextView tvMarginLineSpan;
+    @BindView(R.id.tv_text_round_span)
+    TextView tvTextRoundSpan;
+    @BindView(R.id.img_text_round)
+    ImageView imgTextRound;
+    @BindView(R.id.tv_text_line_background_span)
+    TextView tvTextLineBackgroundSpan;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +78,10 @@ public class ActTextImageSpan extends AppCompatActivity {
         initRainbowSpan();
         initAnimatedColorSpan();
         initTypeWriterSpan();
+        initMarginDotSpan();
+        initMarginLineSpan();
+        initTextRoundSpan();
+        initTextLineBackgroundSpan();
     }
 
     /**
@@ -110,7 +133,9 @@ public class ActTextImageSpan extends AppCompatActivity {
      * 字体多色渐变
      */
     public void initRainbowSpan() {
-        int[] mColors = {0xffe774bb, 0xff63a3e7, 0xffFF4081};
+        int[] mColors = {getResources().getColor(R.color.colorPink),
+                getResources().getColor(R.color.colorBule),
+                getResources().getColor(R.color.colorAccent)};// {0xffe774bb, 0xff63a3e7, 0xffFF4081};
         String str1 = "彩虹样的Span";
         String str2 = "主要是用到了Paint的Shader技术";
         SpannableString spannableString = new SpannableString(str1 + str2);
@@ -203,5 +228,79 @@ public class ActTextImageSpan extends AppCompatActivity {
                     return spanGroup.getAlpha();
                 }
             };
+
+    /**
+     * 整个段落右移一段距离，然后在移动留下的空间处绘制了一个小圆点
+     */
+    private void initMarginDotSpan() {
+        boolean wantColor = true;
+        int paintColor = getResources().getColor(R.color.colorRed);
+        int bulletRadius = 10;
+        int gapWidth = 15;
+        String str = "整个段落右移了一段距离，然后在移动留下的空间处绘制了一个小圆点。";
+        SpannableString spannableString = new SpannableString(str);
+        spannableString.setSpan(new MarginDotSpan(bulletRadius, gapWidth, wantColor, paintColor), 0, str.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        tvMarginDotSpan.setText(spannableString);
+    }
+
+    /**
+     * 每行都偏移相应距离，然后每行都绘制矩形，就连成了一条竖线
+     */
+    private void initMarginLineSpan() {
+        int stripeWidth = 10;
+        int gapWidth = 15;
+        int paintColor = getResources().getColor(R.color.colorAccent);
+        String str = "每行都偏移相应距离，然后每行都绘制矩形，就连成了一条竖线";
+        SpannableString spannableString = new SpannableString(str);
+        spannableString.setSpan(new MarginLineSpan(stripeWidth, gapWidth, paintColor), 0, str.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        tvMarginLineSpan.setText(spannableString);
+    }
+
+    /**
+     * 两端文字环绕图片
+     */
+    private void initTextRoundSpan() {
+        imgTextRound.setImageResource(R.drawable.img_rice);
+
+//       /* Drawable drawable = imgTextRound.getDrawable();
+//        int imgWidth = drawable.getIntrinsicWidth();*/
+//
+//        /*int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+//        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+//        imgTextRound.measure(w, h);
+//        int imgHeight = imgTextRound.getMeasuredHeight();
+//        int imgWidth = imgTextRound.getMeasuredWidth();*/
+
+        ViewGroup.LayoutParams params = imgTextRound.getLayoutParams();
+        int imgHeight = params.height;
+        int imgWidth = params.width;
+
+        //float fontSpacing = tvTextRoundSpan.getPaint().getFontSpacing();
+        int fontSpacing = tvTextRoundSpan.getLineHeight();
+        int lines = (int) (imgHeight / fontSpacing) + 1;
+        String str = "如果希望做到两端文字环绕图片的效果，其实可以考虑编写Span实现LeadingMarginSpan2。" +
+                "具体做法其实比较简单，相对布局中放置img和tv,然后根据ImageView的大小计算TextView需要偏移的距离和行数，" +
+                "整个效果就可以实现。使用ViewGroup.LayoutParams params = imgTextRound.getLayoutParams()的方法获取图片控件的宽高滴。";
+        SpannableString spannableString = new SpannableString(str);
+        spannableString.setSpan(new TextRoundSpan(lines, imgWidth + 30), 0, str.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        tvTextRoundSpan.setText(spannableString);
+    }
+
+    /**
+     * 设置每一行的背景颜色
+     */
+    private void initTextLineBackgroundSpan(){
+        String str = "设置每一行的背景颜色\n";
+        tvTextLineBackgroundSpan.setText("Lines:\n", TextView.BufferType.EDITABLE);
+        appendLine(tvTextLineBackgroundSpan.getEditableText(),str , Color.BLACK);
+        appendLine(tvTextLineBackgroundSpan.getEditableText(),str, Color.RED);
+        appendLine(tvTextLineBackgroundSpan.getEditableText(),str, Color.BLACK);
+    }
+    private void appendLine(Editable text, String string, int color) {
+        final int start = text.length();
+        text.append(string);
+        final int end = text.length();
+        text.setSpan(new TextLineBackgroundSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
 
 }

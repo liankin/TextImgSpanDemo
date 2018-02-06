@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorBule">#63a3e7</color>
     <color name="colorPink">#e774bb</color>
+    <color name="colorWhite">#f7f5f6</color>
+    <color name="colorRed">#ef1313</color>
+    <color name="colorOrange">#e7d021</color>
+    <color name="colorGreen">#a9ec4c</color>
+    <color name="colorGry">#d2d4d0</color>
 </resources>

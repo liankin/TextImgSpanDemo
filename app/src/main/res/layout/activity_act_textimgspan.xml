@@ -1,54 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/tv_custom_image_span"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:background="@color/colorGry">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:lineSpacingExtra="8dp"
-        android:layout_margin="15dp"
-        android:textSize="19sp"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite">
+            <TextView
+                android:id="@+id/tv_custom_image_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8dp"
+                android:layout_marginTop="15dp"
+                android:textSize="19sp"/>
 
-    <TextView
-        android:id="@+id/tv_frame_span"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:lineSpacingExtra="8dp"
-        android:textSize="19sp"/>
+            <TextView
+                android:id="@+id/tv_frame_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:lineSpacingExtra="8dp"
+                android:textSize="19sp"/>
 
-    <TextView
-        android:id="@+id/tv_vertical_image_span"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:lineSpacingExtra="8dp"
-        android:textSize="19sp"/>
+            <TextView
+                android:id="@+id/tv_vertical_image_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:lineSpacingExtra="8dp"
+                android:textSize="19sp"/>
 
-    <TextView
-        android:id="@+id/tv_rainbow_span"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:lineSpacingExtra="8dp"
-        android:textSize="19sp"/>
+            <TextView
+                android:id="@+id/tv_rainbow_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:lineSpacingExtra="8dp"
+                android:textSize="19sp"/>
 
-    <TextView
-        android:id="@+id/tv_animated_color_span"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:lineSpacingExtra="8dp"
-        android:textSize="19sp"/>
+            <TextView
+                android:id="@+id/tv_animated_color_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:lineSpacingExtra="8dp"
+                android:textSize="19sp"/>
 
-    <TextView
-        android:id="@+id/tv_type_writer_span"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:lineSpacingExtra="8dp"
-        android:textSize="19sp"/>
+            <TextView
+                android:id="@+id/tv_type_writer_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:lineSpacingExtra="8dp"
+                android:textSize="19sp"/>
+
+            <TextView
+                android:id="@+id/tv_margin_dot_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:lineSpacingExtra="8dp"
+                android:textSize="19sp"/>
+
+            <TextView
+                android:id="@+id/tv_margin_line_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:lineSpacingExtra="8dp"
+                android:textSize="19sp"/>
+
+            <RelativeLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_text_round_span"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8dp"
+                    android:textSize="19sp"/>
+                <ImageView
+                    android:id="@+id/img_text_round"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="160dp"
+                    android:layout_height="200dp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_text_line_background_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:lineSpacingExtra="8dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="19sp"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
